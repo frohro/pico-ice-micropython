@@ -19,6 +19,20 @@ cmake -DPICO_BOARD=pico_ice ..
 make -j8
 ```
 
+## Building for Pico Dev-iCE
+
+```bash
+git submodule update --init lib/micropython
+git submodule update --init lib/pico-ice-mpy-module
+cd lib/pico-ice-mpy-module && git submodule update --init pico-ice-sdk && cd ../..
+make -C lib/micropython/mpy-cross -j4
+make -C lib/micropython/ports/rp2 submodules
+cd boards/PICO_ICE
+mkdir build && cd build
+cmake -DPICO_BOARD=pico_dev_ice ..
+make -j8
+```
+
 ## Building for pico2-ice
 
 ```bash
@@ -73,6 +87,17 @@ The API to use the FPGA is as follow:
 from machine import Pin
 import ice
 fpga = ice.fpga(cdone=Pin(26), clock=Pin(24), creset=Pin(27), cram_cs=Pin(9), cram_mosi=Pin(8), cram_sck=Pin(10), frequency=48)
+file = open("bitstream.bin", "br")
+fpga.start()
+fpga.cram(file)
+```
+
+### On Pico Dev-iCE:
+
+```python
+from machine import Pin
+import ice
+fpga = ice.fpga(cdone=Pin(21), clock=Pin(6), creset=Pin(22), cram_cs=Pin(5), cram_mosi=Pin(7), cram_sck=Pin(6), frequency=30.72)
 file = open("bitstream.bin", "br")
 fpga.start()
 fpga.cram(file)

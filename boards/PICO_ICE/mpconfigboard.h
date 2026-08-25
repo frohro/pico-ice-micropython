@@ -2,6 +2,8 @@
 #define MICROPY_HW_BOARD_NAME "tinyVision.ai pico-ice"
 #elifdef PICO2_ICE
 #define MICROPY_HW_BOARD_NAME "tinyVision.ai pico2-ice"
+#elifdef PICO_DEV_ICE
+#define MICROPY_HW_BOARD_NAME "Pico Dev-iCE"
 #endif
 
 // Allow 1MB for the firmware image itself, allocate the remainder to the filesystem
@@ -47,4 +49,14 @@
 
 #define MICROPY_HW_PSRAM_CS_PIN	(8)
 #define MICROPY_HW_ENABLE_PSRAM	(1)
+
+#elifdef PICO_DEV_ICE
+/* FPGA SPI */
+#define MICROPY_HW_SPI0_SCK		(6)
+#define MICROPY_HW_SPI0_MOSI	(7)
+#define MICROPY_HW_SPI0_MISO	(4)
+/* OLED I2C0 */
+#define MICROPY_HW_I2C0_SCL		(3)
+#define MICROPY_HW_I2C0_SDA		(2)
 #endif
+

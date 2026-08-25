@@ -28,6 +28,7 @@ ICE_SI = None
 ICE_SO = None
 ICE_SS = None
 ICE_CLK = None
+ICE_INT = None
 LED_B = None
 LED_G = None
 LED_R = None
@@ -39,9 +40,26 @@ PMOD_B1 = None
 PMOD_B2 = None
 PMOD_B3 = None
 PMOD_B4 = None
+PMOD_2 = None
+PMOD_3 = None
 
 SRAM_SS = None
 CLKOUT = None
+PGA0 = None
+PGA1 = None
+PGA2 = None
+PGA3 = None
+BAND_SW = None
+TX_DATA = None
+RX_DATA = None
+BCK = None
+WS = None
+AF_DAC_DATA = None
+AF_DAC_MCLK = None
+AF_DAC_SCLK = None
+AF_DAC_LRCK = None
+REF = None
+TR_SW = None
 
 if "pico2-ice" in os.uname().machine:
 	LED_G = 0
@@ -83,6 +101,33 @@ if "pico2-ice" in os.uname().machine:
 	ADC7 = 47
 	ICE_SDA = 2
 	ICE_SCL = 3
+elif "Pico Dev-iCE" in os.uname().machine or "pico_dev_ice" in os.uname().machine:
+	ICE_INT = 0
+	PMOD_3 = 1
+	ICE_SDA = 2
+	ICE_SCL = 3
+	ICE_SO = 4
+	ICE_SS = 5
+	ICE_SCK = 6
+	ICE_SI = 7
+	PGA0 = 8
+	PGA1 = 9
+	PGA2 = 10
+	PGA3 = 11
+	BAND_SW = 12
+	TX_DATA = 13
+	RX_DATA = 14
+	BCK = 15
+	WS = 16
+	AF_DAC_DATA = 17
+	AF_DAC_MCLK = 18
+	AF_DAC_SCLK = 19
+	AF_DAC_LRCK = 20
+	ICE_DONE = 21
+	ICE_RST = 22
+	REF = 26
+	PMOD_2 = 27
+	TR_SW = 28
 elif "pico-ice" in os.uname().machine:
 	ICE_27 = 0
 	ICE_25 = 1
@@ -117,5 +162,6 @@ elif "pico-ice" in os.uname().machine:
 	ADC3 = 29
 	ICE_RST = 27
 	ICE_CLK = 24
+
 
 del os
